@@ -57,6 +57,12 @@ for it, birdListing in enumerate(file):
                         reformattedList[it3][len(reformattedList[it3])-1] = birdTotal
                         birdTotal = 0
 
-staticReformattedList = reformattedList
+outPath = inPath.removesuffix(".csv")
+outPath += "_Reformatted_For_QGIS.csv"
+
+columns = reformattedList[0]
+reformattedList.pop(0)
+saveFile = pandas.DataFrame(reformattedList, columns=columns)
+saveFile.to_csv(outPath, index=False)
 
 print(reformattedList)
